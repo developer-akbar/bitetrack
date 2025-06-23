@@ -1,0 +1,103 @@
+:root {
+  --bg: #ffffff;
+  --text-color: #222;
+  --card-bg: #f5f5f5;
+  --tab-bg: #e0e0e0;
+  --tab-color: #444;
+  --primary: #007bff;
+  --accent: #ffc107;
+  --shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --border: #ccc;
+}
+
+[data-theme="dark"] {
+  --bg: #121212;
+  --text-color: #f1f1f1;
+  --card-bg: #1e1e1e;
+  --tab-bg: #333;
+  --tab-color: #ccc;
+  --primary: #2196f3;
+  --accent: #ff9800;
+  --shadow: 0 2px 6px rgba(255, 255, 255, 0.05);
+  --border: #444;
+}
+
+#root {
+  max-width: 600px;
+  margin: auto;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  width: 100%;
+  margin-bottom: 1rem;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.tab-nav {
+  display: flex;
+  gap: 10px;
+  background: var(--tab-bg);
+  padding: 0.5rem;
+  border-radius: 10px;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
+.tab-nav>div {
+  flex: 1;
+  padding: 0.5rem 0;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--tab-color);
+  transition: font-weight 0.3s linear, border 0.3s linear, color 0.3s linear;
+  text-align: center;
+}
+
+.tab-nav div.active {
+  border-bottom: 2px solid var(--primary);
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.tab-nav div:hover {
+  opacity: 0.9;
+}
