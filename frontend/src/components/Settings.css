@@ -47,9 +47,9 @@
 }
 
 .theme-toggle button {
-    background: var(--accent);
+    background: var(--bg-blackwhite);
     border: none;
-    color: white;
+    color: var(--text-blackwhite);
     padding: 6px 12px;
     border-radius: 6px;
     cursor: pointer;

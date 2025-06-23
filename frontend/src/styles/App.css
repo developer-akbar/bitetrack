@@ -30,15 +30,16 @@
     --text-subtle: #aaa;
 }
 
+#root {
+    max-width: 600px;
+    margin: auto;
+}
 
 body {
     background-color: var(--bg);
     color: var(--text-color);
-}
-
-.dark-mode {
-    background-color: #1e1e1e;
-    color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -66,6 +67,7 @@ button {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
     transition: background-color 0.2s;
 }
 
@@ -85,21 +87,46 @@ button:disabled {
 input[type="text"],
 input[type="number"],
 select {
-    width: 100%;
     padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box;
+    border: 1px solid var(--border);
+    width: 100%;
+    margin-bottom: 1rem;
+    background-color: var(--card-bg);
+    color: var(--text-color);
 }
 
-.toast {
-    background-color: #d4edda;
-    color: #155724;
-    padding: 12px;
-    border-radius: 6px;
+.tab-nav {
+    display: flex;
+    gap: 10px;
+    background: var(--tab-bg);
+    padding: 0.5rem;
+    border-radius: 10px;
+    justify-content: space-around;
     margin-bottom: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tab-nav>div {
+    flex: 1;
+    padding: 0.5rem 0;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--tab-color);
+    transition: font-weight 0.3s linear, border 0.3s linear, color 0.3s linear;
+    text-align: center;
+}
+
+.tab-nav div.active {
+    border-bottom: 2px solid var(--primary);
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+.tab-nav div:hover {
+    opacity: 0.9;
 }
 
 .card {
@@ -110,10 +137,6 @@ select {
     padding: 1rem;
     margin-bottom: 1.5rem;
     transition: background-color 0.3s;
-}
-
-.dark-mode .card {
-    background-color: var(--card-bg);
 }
 
 .summary-tile {
@@ -146,23 +169,7 @@ select {
 }
 
 .btn:hover {
-  opacity: 0.9;
-}
-
-@media (max-width: 600px) {
-    .summary-tile {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    button {
-        width: 100%;
-        margin-top: 0.5rem;
-    }
-
-    .input-group {
-        margin-bottom: 1.2rem;
-    }
+    opacity: 0.9;
 }
 
 .item-entry {
@@ -204,8 +211,31 @@ select {
     opacity: 0.9;
 }
 
+.toast-message {
+    background-color: var(--tab-bg);
+    color: var(--text-color);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 600px) {
     .action-icons {
         opacity: 1 !important;
+    }
+
+    .summary-tile {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .input-group {
+        margin-bottom: 1.2rem;
     }
 }

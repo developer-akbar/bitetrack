@@ -68,7 +68,7 @@ const Settings = ({ toggleTheme, currentTheme, showToast }) => {
                 <div className="setting-section">
                     <h2>⚙️ Preferences</h2>
                     <div className="theme-toggle">
-                        <span>Theme:</span>
+                        <span>Theme</span>
                         <button onClick={toggleTheme}>
                             Switch to {currentTheme === "light" ? "Dark" : "Light"} Mode
                         </button>
