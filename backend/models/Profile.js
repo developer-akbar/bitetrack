@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const profileSchema = new mongoose.Schema({
     name: String,
+    email: {type: String, required: true, unique: true},
     age: Number,
     gender: { type: String, enum: ['male', 'female'], required: true },
     height: Number, // in cm

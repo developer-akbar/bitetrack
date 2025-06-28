@@ -10,7 +10,7 @@ const BurnForm = ({ onEntrySaved, showToast }) => {
 
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/burn/analyze', {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/analyze`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ activityText }),

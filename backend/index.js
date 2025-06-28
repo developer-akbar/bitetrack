@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -21,6 +23,6 @@ app.use('/api/burn', burnRoutes);
 const profileRoutes = require('./routes/profile');
 app.use('/api/profile', profileRoutes);
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

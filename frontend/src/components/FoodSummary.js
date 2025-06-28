@@ -7,7 +7,7 @@ const FoodSummary = () => {
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/food/summary/today");
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/summary/today`);
                 const data = await res.json();
                 setTotalConsumed(data.totalConsumed);
             } catch (err) {

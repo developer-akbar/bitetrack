@@ -6,7 +6,7 @@ import { FaSmile, FaCheckCircle, FaExclamationTriangle, FaBalanceScale } from 'r
 const DashboardSummary = () => {
   const [consumed, setConsumed] = useState(0);
   const [burned, setBurned] = useState(0);
-  const [name, setName] = useState("");
+  const [profile, setProfile] = useState(null);
   const [forceShow, setForceShow] = useState(false);
   const threshold = 100;
 
@@ -14,7 +14,7 @@ const DashboardSummary = () => {
     const today = new Date().toISOString().split("T")[0];
 
     const fetchFood = async () => {
-      const res = await fetch("http://localhost:5000/api/food/history");
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/history`);
       const data = await res.json();
       const todayFood = data.filter(entry =>
         entry.createdAt.startsWith(today)
@@ -24,7 +24,7 @@ const DashboardSummary = () => {
     };
 
     const fetchBurn = async () => {
-      const res = await fetch("http://localhost:5000/api/burn/history");
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/history`);
       const data = await res.json();
       const todayBurn = data.filter(entry =>
         entry.createdAt.startsWith(today)
@@ -33,9 +33,12 @@ const DashboardSummary = () => {
       setBurned(totalBurned);
     };
 
-    const profile = getProfileFromCookie();
-    if (profile?.name) {
-      setName(profile.name);
+    const cookieProfile = getProfileFromCookie();
+    if (cookieProfile?.email) {
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/email/${cookieProfile.email}`)
+        .then(res => res.json())
+        .then(data => setProfile(data))
+        .catch(err => console.error("Error fetching profile from DB", err));
     }
 
     fetchFood();
@@ -46,10 +49,9 @@ const DashboardSummary = () => {
 
   return (
     <div className="dashboard-summary">
-      {name ? (
+      {profile ? (
         <>
           {(() => {
-            const profile = getProfileFromCookie();
             const currentHour = new Date().getHours();
 
             if (!profile?.TDEE) {

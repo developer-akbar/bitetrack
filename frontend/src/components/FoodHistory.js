@@ -4,7 +4,7 @@ import './Food.css';
 
 const FoodHistory = ({ entries, setEntries, showToast }) => {
   useEffect(() => {
-    fetch("http://localhost:5000/api/food/history")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/history`)
       .then((res) => res.json())
       .then((data) => setEntries(data))
       .catch((err) => console.error("Error fetching food history: ", err));
@@ -14,7 +14,7 @@ const FoodHistory = ({ entries, setEntries, showToast }) => {
     if (!window.confirm("Do you want to delete this entry?")) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/food/delete/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/delete/${id}`, {
         method: "DELETE",
       });
 
@@ -35,7 +35,7 @@ const FoodHistory = ({ entries, setEntries, showToast }) => {
     if (!newText || newText === currentFoodText) return;
 
     try {
-      const res = await fetch(`http://localhost:5000/api/food/update/${id}`, {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ const FoodHistory = ({ entries, setEntries, showToast }) => {
       });
 
       if (res.ok) {
-        const updated = await fetch("http://localhost:5000/api/food/history");
+        const updated = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/history`);
         const data = await updated.json();
         setEntries(data);
         showToast("Entry updated successfully!");

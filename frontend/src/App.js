@@ -44,7 +44,7 @@ function App() {
     if (cookieProfile && cookieProfile.name) {
       setUserName(cookieProfile.name);
     } else {
-      fetch('http://localhost:5000/api/profile/latest-profile')
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/profile/latest-profile`)
         .then(res => res.json())
         .then(profile => {
           if (!profile.name) return;
@@ -64,7 +64,7 @@ function App() {
 
   const fetchFoodEntries = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/food/history');
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/history`);
       const data = await res.json();
       setEntries(data);
     } catch (err) {
@@ -81,7 +81,7 @@ function App() {
     setResponse(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/food/analyze", {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/food/analyze`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

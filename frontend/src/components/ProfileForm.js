@@ -4,6 +4,7 @@ import Cookies from 'js-cookie';
 const ProfileForm = ({ profile, showToast, onSave }) => {
     const [formData, setFormData] = useState({
         name: "",
+        email: "",
         age: "",
         gender: "male",
         height: "",
@@ -25,8 +26,8 @@ const ProfileForm = ({ profile, showToast, onSave }) => {
         e.preventDefault();
         try {
             const url = profile?._id
-                ? `http://localhost:5000/api/profile/update/${profile._id}`
-                : `http://localhost:5000/api/profile/create`;
+                ? `${process.env.REACT_APP_BACKEND_URL}/api/profile/update/${profile._id}`
+                : `${process.env.REACT_APP_BACKEND_URL}/api/profile/create`;
 
             const method = profile?._id ? "PUT" : "POST";
 
@@ -53,6 +54,7 @@ const ProfileForm = ({ profile, showToast, onSave }) => {
             <h2>👤 User Profile</h2>
 
             <label>Name: <input type="text" name="name" value={formData.name} onChange={handleChange} required /></label><br />
+            <label>Email: <input type="email" name="email" value={formData.email} onChange={handleChange} required /></label><br />
             <label>Age: <input type="number" name="age" value={formData.age} onChange={handleChange} required /></label><br />
             <label>Gender:
                 <select name="gender" value={formData.gender} onChange={handleChange}>

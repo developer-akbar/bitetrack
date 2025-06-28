@@ -8,7 +8,7 @@ const BurnSummary = () => {
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                const res = await fetch("http://localhost:5000/api/burn/summary/today");
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/summary/today`);
                 const data = await res.json();
                 setTotalBurned(data.totalBurned);
             } catch (err) {

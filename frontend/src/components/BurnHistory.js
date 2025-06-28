@@ -4,7 +4,7 @@ import './Burn.css';
 
 const BurnHistory = ({ entries, setEntries, showToast }) => {
   useEffect(() => {
-    fetch("http://localhost:5000/api/burn/history")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/history`)
       .then((res) => res.json())
       .then((data) => setEntries(data))
       .catch((err) => console.error("Error fetching burn history: ", err));
@@ -14,7 +14,7 @@ const BurnHistory = ({ entries, setEntries, showToast }) => {
     if (!window.confirm("Do you want to delete this entry?")) return;
 
     try {
-      await fetch(`http://localhost:5000/api/burn/delete/${id}`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/delete/${id}`, {
         method: "DELETE",
       });
       setEntries((prev) => prev.filter((e) => e._id !== id));
@@ -29,7 +29,7 @@ const BurnHistory = ({ entries, setEntries, showToast }) => {
     if (!newText || newText === currentText) return;
 
     try {
-      await fetch(`http://localhost:5000/api/burn/update/${id}`, {
+      await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/update/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const BurnHistory = ({ entries, setEntries, showToast }) => {
         body: JSON.stringify({ activityText: newText }),
       });
 
-      const updated = await fetch("http://localhost:5000/api/burn/history").then((res) =>
+      const updated = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/burn/history`).then((res) =>
         res.json()
       );
       setEntries(updated);
