@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: bitetrack-backend
+    env: docker
+    plan: free
+    repo: khttps://github.com/developer-akbar/bitetrack
+    dockerfilePath: ./backend/Dockerfile
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: NODE_ENV
+        value: production
+
+  - type: web
+    name: bitetrack-frontend
+    env: docker
+    plan: free
+    repo: https://github.com/developer-akbar/bitetrack
+    dockerfilePath: ./frontend/Dockerfile
+    buildCommand: npm install && npm run build
+    startCommand: npx serve -s build
