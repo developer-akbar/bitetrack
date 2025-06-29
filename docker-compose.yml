@@ -24,9 +24,9 @@ services:
     build:
       context: ./frontend
       args:
-        - REACT_APP_BACKEND_URL=http://localhost:5000
+        - REACT_APP_BACKEND_URL=https://bitetrack-production-052d.up.railway.app
     ports:
-      - "3000:3000"
+      - "8000:80"
     depends_on:
       - backend
 
